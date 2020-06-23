@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "note-for": {
+      "hosting": {
+        "note-for-youtube": [
+          "note-for"
+        ]
+      }
+    }
+  }
+}
