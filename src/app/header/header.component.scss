@@ -1,0 +1,68 @@
+.wrap {
+  margin: 0;
+}
+
+.header {
+  &__toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+  }
+  &__left {
+    display: flex;
+    align-items: center;
+  }
+  &__logo-wrap {
+    display: flex;
+    align-items: center;
+  }
+  &__image {
+    width: 32px;
+    height: 32px;
+    margin-left: 8px;
+  }
+  &__logo {
+    color: white;
+    margin: 0 0 0 16px;
+    letter-spacing: 1px;
+    font-weight: 500;
+  }
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  &__input {
+    width: 400px;
+    height: 34px;
+    background-color: #424242;
+    border: none;
+    border-radius: 2px;
+    outline: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    caret-color: white;
+    font-size: 16px;
+  }
+  &__input[type='text']:focus {
+    box-shadow: 0 0 3px 0 rgba(233, 30, 99, 1);
+    outline: 0;
+  }
+  &__button {
+    background-color: rgba(49, 49, 49, 0.38);
+  }
+}
+
+.nav {
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  &__user-avatar {
+    img {
+      width: 32px;
+      height: 32px;
+      margin-left: 40px;
+    }
+  }
+}
