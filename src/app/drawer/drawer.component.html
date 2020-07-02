@@ -1,7 +1,4 @@
-<div
-  class="sidenav_container"
-  [@onDrawerChange]="drawerState ? 'open' : 'close'"
->
+<div class="nav__container" [@onDrawerChange]="drawerState ? 'open' : 'close'">
   <mat-nav-list class="nav__side-list" [class.closed]="!drawerState">
     <mat-list-item *ngFor="let page of pages">
       <mat-icon mat-list-icon *ngIf="drawerState">{{ page?.icon }}</mat-icon>
@@ -20,7 +17,7 @@
     </button>
   </div>
 
-  <div *ngIf="drawerState">
+  <div class="nav__footer" *ngIf="drawerState">
     <mat-divider></mat-divider>
     <ul class="nav__footer-list">
       <li>
