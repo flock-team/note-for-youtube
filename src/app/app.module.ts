@@ -1,25 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderComponent } from './header/header.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AngularMaterialModule } from './shared/angular-material.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
+
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+import { DrawerComponent } from './drawer/drawer.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent, DrawerComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    AngularMaterialModule,
+    MatSidenavModule,
+    MatListModule,
     MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
