@@ -7,7 +7,7 @@
     fixedInViewport
     fixedTopGap="64"
     mode="side"
-    opened
+    [opened]="isOpened$ | async"
   >
     <app-drawer></app-drawer>
   </mat-sidenav>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DrawerService } from './services/drawer.service';
 import { onMainContentChange } from './animations/animations';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,9 @@ import { onMainContentChange } from './animations/animations';
 })
 export class AppComponent {
   title = 'note-for-youtube';
+
+  isOpened$: Observable<boolean> = this.drawerService.isOpened$;
+
   onDrawerChange: boolean;
   constructor(private drawerService: DrawerService) {
     this.drawerService.drawerState$.subscribe((res) => {
