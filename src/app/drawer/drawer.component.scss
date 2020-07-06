@@ -1,4 +1,7 @@
 .nav {
+  &__side-list {
+    user-select: none;
+  }
   &__side-arrow {
     padding: 0 16px 16px 16px;
   }
