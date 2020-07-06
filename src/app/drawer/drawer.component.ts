@@ -16,10 +16,10 @@ interface Page {
 export class DrawerComponent implements OnInit {
   constructor(private drawerService: DrawerService) {}
   pages: Page[] = [
-    { name: 'ホーム', link: 'some-link', icon: 'home' },
-    { name: 'マイリスト', link: 'some-link', icon: 'list' },
-    { name: 'ブックマーク', link: 'some-link', icon: 'book' },
-    { name: 'タグ', link: 'some-link', icon: 'loyalty' },
+    { name: 'ホーム', link: '/home', icon: 'home' },
+    { name: 'マイリスト', link: '/my-list', icon: 'list' },
+    { name: 'ブックマーク', link: '/book-mark', icon: 'book' },
+    { name: 'タグ', link: '/facet', icon: 'loyalty' },
   ];
 
   drawerState = false;

@@ -8,6 +8,7 @@
     justify-content: space-between;
     align-items: center;
     position: fixed;
+    z-index: 100;
   }
   &__left {
     display: flex;
@@ -17,14 +18,23 @@
     display: flex;
     align-items: center;
   }
+  &__logo-btn {
+    margin-left: 16px;
+  }
+  &__logo-link {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    padding: 8px 16px;
+    user-select: none;
+  }
   &__image {
     width: 32px;
     height: 32px;
-    margin-left: 8px;
   }
   &__logo {
     color: white;
-    margin: 0 0 0 16px;
+    margin-left: 8px;
     letter-spacing: 1px;
     font-weight: 500;
   }
@@ -44,6 +54,8 @@
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     caret-color: white;
     font-size: 16px;
+    user-select: none;
+    color: white;
   }
   &__input[type='text']:focus {
     box-shadow: 0 0 3px 0 rgba(233, 30, 99, 1);
@@ -59,10 +71,11 @@
   display: flex;
   align-items: center;
   &__user-avatar {
-    img {
-      width: 32px;
-      height: 32px;
-      margin-left: 40px;
-    }
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    padding: 8px 8px;
+    margin: 0 8px;
   }
 }

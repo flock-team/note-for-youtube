@@ -1,16 +1,11 @@
 <div class="nav__container" [@onDrawerChange]="!drawerState ? 'open' : 'close'">
   <mat-nav-list class="nav__side-list" [class.closed]="drawerState">
-    <a mat-list-item
-      *ngFor="let page of pages"
-      routerLink="{{ page?.link }}">
-        <mat-icon mat-list-icon *ngIf="drawerState">{{ page?.icon }}</mat-icon>
-        <mat-icon mat-list-icon *ngIf="!drawerState">{{ page?.icon }}</mat-icon>
-        <span
-        matLine
-        [@animateText]="!linkText ? 'show' : 'hide'"
-        >
+    <a mat-list-item *ngFor="let page of pages" routerLink="{{ page?.link }}">
+      <mat-icon mat-list-icon *ngIf="drawerState">{{ page?.icon }}</mat-icon>
+      <mat-icon mat-list-icon *ngIf="!drawerState">{{ page?.icon }}</mat-icon>
+      <span matLine [@animateText]="!linkText ? 'show' : 'hide'">
         {{ page?.name }}
-        </span>
+      </span>
     </a>
   </mat-nav-list>
 
@@ -31,9 +26,15 @@
           <mat-icon inline="true">whatshot</mat-icon>
         </a>
       </li>
-      <li><a class="nav__footer-link" routerLink="/welcome">サービス紹介</a></li>
+      <li>
+        <a class="nav__footer-link" routerLink="/welcome">サービス紹介</a>
+      </li>
       <li><a class="nav__footer-link" routerLink="/terms">利用規約</a></li>
-      <li><a class="nav__footer-link" routerLink="/transaction">特定商取引法に基づく表示</a></li>
+      <li>
+        <a class="nav__footer-link" routerLink="/transaction"
+          >特定商取引法に基づく表示</a
+        >
+      </li>
     </ul>
   </div>
 </div>
