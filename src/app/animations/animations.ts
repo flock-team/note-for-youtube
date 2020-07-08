@@ -12,17 +12,17 @@ export const onDrawerChange = trigger('onDrawerChange', [
   state(
     'close',
     style({
-      'min-width': '72px',
+      width: '72px',
     })
   ),
   state(
     'open',
     style({
-      'min-width': '200px',
+      width: '240px',
     })
   ),
-  transition('close => open', animate('100ms ease-in')),
-  transition('open => close', animate('100ms ease-out')),
+  transition('close => open', animate('200ms ease-in')),
+  transition('open => close', animate('250ms ease-out')),
 ]);
 
 export const onMainContentChange = trigger('onMainContentChange', [
@@ -35,11 +35,11 @@ export const onMainContentChange = trigger('onMainContentChange', [
   state(
     'open',
     style({
-      'margin-left': '200px',
+      'margin-left': '240px',
     })
   ),
-  transition('close => open', animate('100ms ease-in')),
-  transition('open => close', animate('100ms ease-in')),
+  transition('close => open', animate('150ms ease-in')),
+  transition('open => close', animate('150ms ease-in')),
 ]);
 
 export const animateText = trigger('animateText', [
@@ -57,6 +57,6 @@ export const animateText = trigger('animateText', [
       opacity: 1,
     })
   ),
-  transition('close => open', animate('100ms ease-in')),
-  transition('open => close', animate('100ms ease-out')),
+  transition('close => open', animate('350ms ease-in')),
+  transition('open => close', animate('200ms ease-out')),
 ]);
