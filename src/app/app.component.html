@@ -1,19 +1,26 @@
-<app-header [sidenav]="sidenav"></app-header>
+<app-header></app-header>
 
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav
     color="basic"
+    [class.open]="!drawerService.drawerState"
+    [class.close]="drawerService.drawerState"
     #sidenav
     fixedInViewport
     fixedTopGap="64"
     mode="side"
     opened
+    [@onDrawerChange]="!drawerService.drawerState ? 'open' : 'close'"
   >
-    <app-drawer></app-drawer>
+    <app-mini-variant *ngIf="drawerService.drawerState"></app-mini-variant>
+    <app-drawer
+      *ngIf="!drawerService.drawerState"
+      [@animateText]="!drawerService.linkText ? 'show' : 'hide'"
+    ></app-drawer>
   </mat-sidenav>
 
   <mat-sidenav-content
-    [@onMainContentChange]="!onDrawerChange ? 'open' : 'close'"
+    [@onMainContentChange]="!drawerService.drawerState ? 'open' : 'close'"
   >
     <div class="container">
       <router-outlet></router-outlet>

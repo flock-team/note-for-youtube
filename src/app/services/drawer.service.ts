@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class DrawerService {
-  drawerState$: Subject<boolean> = new Subject();
-
+  drawerState: boolean;
+  linkText: boolean;
   constructor() {}
 }
