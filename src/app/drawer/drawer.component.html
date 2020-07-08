@@ -1,32 +1,32 @@
-<div class="nav__container">
+<div class="nav">
   <mat-nav-list class="nav__side-list">
     <a mat-list-item *ngFor="let page of pages" routerLink="{{ page?.link }}">
       <mat-icon mat-list-icon>{{ page?.icon }}</mat-icon>
       <span matLine>{{ page?.name }}</span>
     </a>
   </mat-nav-list>
-
-  <mat-divider></mat-divider>
-
-  <footer class="footer">
-    <div class="footer__subscribe-wrap">
-      <a class="footer__subscribe-link" routerLink="/subscribe">
-        アップグレード
-        <mat-icon inline="true">whatshot</mat-icon>
-      </a>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-    </div>
-    <div class="footer__list-wrap">
-      <ul class="footer__list">
-        <li><a class="footer__link" routerLink="/welcome">サービス紹介</a></li>
-        <li><a class="footer__link" routerLink="/terms">利用規約</a></li>
-        <li>
-          <a class="footer__link" routerLink="/transaction"
-            >特定商取引法に基づく表示</a
-          >
-        </li>
-        <li><p class="footer__copy">&copy; 2020 koki inoue</p></li>
-      </ul>
-    </div>
-  </footer>
 </div>
+
+<mat-divider></mat-divider>
+
+<footer class="footer">
+  <div class="footer__subscribe-wrap">
+    <a class="footer__subscribe-link" routerLink="/subscribe">
+      アップグレード
+      <mat-icon inline="true">whatshot</mat-icon>
+    </a>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+  </div>
+  <div class="footer__list-wrap">
+    <ul class="footer__list">
+      <li><a class="footer__link" routerLink="/welcome">サービス紹介</a></li>
+      <li><a class="footer__link" routerLink="/terms">利用規約</a></li>
+      <li>
+        <a class="footer__link" routerLink="/transaction"
+          >特定商取引法に基づく表示</a
+        >
+      </li>
+      <li><p class="footer__copy">&copy; 2020 koki inoue</p></li>
+    </ul>
+  </div>
+</footer>
