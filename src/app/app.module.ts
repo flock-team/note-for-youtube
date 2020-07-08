@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { DrawerComponent } from './drawer/drawer.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { MiniVariantComponent } from './mini-variant/mini-variant.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     HeaderComponent,
     DrawerComponent,
     NotFoundComponent,
+    MiniVariantComponent,
   ],
   imports: [
     BrowserModule,
