@@ -18,10 +18,27 @@ img {
 .container {
   padding: 0 24px;
 }
-
-.closed .mat-list-text {
+//drawer
+.open .nav__side-list .mat-list-item-content {
+  padding: 20px !important;
+}
+.sidenav-container {
+  padding-top: 64px;
+}
+//mini-variant
+.close .mat-list-item {
+  height: 72px !important;
+  display: flex !important;
+  justify-content: center;
+}
+.close .mat-list-item-content {
+  flex-direction: column !important;
+  align-items: start !important;
+  padding: 0 24px !important;
+}
+.close .mat-list-text {
   padding-left: 0 !important;
 }
-.nav__side-list .mat-list-item-content {
-  padding: 20px !important;
+.close .mat-line {
+  font-size: 8px !important;
 }

@@ -1,11 +1,13 @@
 <header class="header">
   <mat-toolbar class="header__toolbar" color="bacic">
     <div class="header__left">
-      <button mat-icon-button (click)="toggle()">
+      <button mat-icon-button (click)="onDrawerToggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <img class="header__image" src="./assets/images/NFT-LOGO.png" alt="" />
-      <h1 class="header__logo">LOGO</h1>
+      <a class="header__logo-link" routerLink="/home">
+        <img class="header__image" src="./assets/images/NFT-LOGO.png" alt="" />
+        <h1 class="header__logo">LOGO</h1>
+      </a>
     </div>
 
     <div class="search">
@@ -25,7 +27,7 @@
         <mat-icon>notifications</mat-icon>
       </button>
 
-      <a class="nav__user-avatar" href="">
+      <a class="nav__user-avatar" routerLink="/account">
         <img src="./assets/images/dummy-icon.png" alt="" />
       </a>
     </nav>
