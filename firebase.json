@@ -9,17 +9,6 @@
           "destination": "/index.html"
         }
       ]
-    },
-    {
-      "target": "note-for-youtube",
-      "public": "dist/note-for-youtube",
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ]
     }
   ],
   "firestore": {
