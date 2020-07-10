@@ -4,14 +4,14 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
+    path: '',
+    loadChildren: () =>
+      import('src/app/home/home.module').then((m) => m.HomeModule),
+  },
+  {
     path: 'account',
     loadChildren: () =>
       import('src/app/account/account.module').then((m) => m.AccountModule),
-  },
-  {
-    path: 'home',
-    loadChildren: () =>
-      import('src/app/home/home.module').then((m) => m.HomeModule),
   },
   {
     path: 'my-list',

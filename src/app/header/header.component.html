@@ -4,7 +4,7 @@
       <button mat-icon-button (click)="onDrawerToggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <a class="header__logo-link" routerLink="/home">
+      <a class="header__logo-link" routerLink="/">
         <img class="header__image" src="./assets/images/NFT-LOGO.png" alt="" />
         <h1 class="header__logo">LOGO</h1>
       </a>
@@ -30,6 +30,14 @@
       <a class="nav__user-avatar" routerLink="/account">
         <img src="./assets/images/dummy-icon.png" alt="" />
       </a>
+      <button
+        *ngIf="user$ | async"
+        (click)="logout()"
+        mat-raised-button
+        style="margin-left: 8px;"
+      >
+        ログアウト
+      </button>
     </nav>
   </mat-toolbar>
 </header>
