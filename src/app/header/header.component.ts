@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DrawerService } from '../services/drawer.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,12 @@ import { DrawerService } from '../services/drawer.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(public drawerService: DrawerService) {}
+  user$ = this.authService.afUser$;
+
+  constructor(
+    public drawerService: DrawerService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -16,5 +22,9 @@ export class HeaderComponent implements OnInit {
     setTimeout(() => {
       this.drawerService.linkText = this.drawerService.drawerState;
     }, 200);
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

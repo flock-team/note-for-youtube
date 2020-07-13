@@ -13,7 +13,7 @@ interface Page {
 export class DrawerComponent implements OnInit {
   constructor() {}
   pages: Page[] = [
-    { name: 'ホーム', link: '/home', icon: 'home' },
+    { name: 'ホーム', link: '/', icon: 'home' },
     { name: 'マイリスト', link: '/my-list', icon: 'list' },
     { name: 'ブックマーク', link: '/book-mark', icon: 'book' },
     { name: 'タグ', link: '/facet', icon: 'loyalty' },
