@@ -27,17 +27,26 @@
         <mat-icon>notifications</mat-icon>
       </button>
 
-      <a class="nav__user-avatar" routerLink="/account">
-        <img src="./assets/images/dummy-icon.png" alt="" />
-      </a>
       <button
         *ngIf="user$ | async"
-        (click)="logout()"
-        mat-raised-button
-        style="margin-left: 8px;"
-      >
-        ログアウト
-      </button>
+        class="nav__user-avatar"
+        mat-mini-fab
+        [matMenuTriggerFor]="menu"
+        [style.background-image]="'url(./assets/images/dummy-icon.png)'"
+      ></button>
+      <mat-menu #menu="matMenu">
+        <button (click)="logout()" mat-menu-item>
+          <mat-icon>exit_to_app</mat-icon>
+          ログアウト
+        </button>
+
+        <mat-divider></mat-divider>
+
+        <button mat-menu-item routerLink="/account">
+          <mat-icon>account_box</mat-icon>
+          アカウント管理
+        </button>
+      </mat-menu>
     </nav>
   </mat-toolbar>
 </header>

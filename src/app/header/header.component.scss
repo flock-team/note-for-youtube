@@ -70,12 +70,9 @@
   line-height: 1;
   display: flex;
   align-items: center;
+  margin-right: 8px;
   &__user-avatar {
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    padding: 8px 8px;
-    margin: 0 8px;
+    background: center / cover;
+    margin-left: 16px;
   }
 }
