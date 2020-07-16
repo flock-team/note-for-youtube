@@ -32,7 +32,7 @@ export class AuthService {
   googleLogin() {
     const googleProvider = new auth.GoogleAuthProvider();
     googleProvider.setCustomParameters({ prompt: 'select_account' });
-    this.afAuth.signInWithPopup(googleProvider).then(() => {
+    return this.afAuth.signInWithPopup(googleProvider).then(() => {
       this.snackBar.open('ログインしました', null, {
         duration: 2000,
       });
@@ -43,7 +43,7 @@ export class AuthService {
   twitterLogin() {
     const twitterProvider = new auth.TwitterAuthProvider();
     twitterProvider.setCustomParameters({ prompt: 'select_account' });
-    this.afAuth.signInWithPopup(twitterProvider).then(() => {
+    return this.afAuth.signInWithPopup(twitterProvider).then(() => {
       this.snackBar.open('ログインしました', null, {
         duration: 2000,
       });
