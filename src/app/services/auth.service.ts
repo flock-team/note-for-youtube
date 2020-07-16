@@ -2,24 +2,32 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { auth, User } from 'firebase/app';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserData } from 'functions/src/intarfaces/user';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  afUser$: Observable<User> = this.afAuth.user;
+  user$: Observable<UserData> = this.afAuth.authState.pipe(
+    switchMap((afUser) => {
+      if (afUser) {
+        return this.db.doc<UserData>(`users/${afUser.uid}`).valueChanges();
+      } else {
+        return of(null);
+      }
+    })
+  );
 
   constructor(
     public afAuth: AngularFireAuth,
     private db: AngularFirestore,
     private router: Router,
     private snackBar: MatSnackBar
-  ) {
-    this.afUser$.subscribe((user) => console.log(user));
-  }
+  ) {}
 
   googleLogin() {
     const googleProvider = new auth.GoogleAuthProvider();
