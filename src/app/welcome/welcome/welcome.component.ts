@@ -7,15 +7,23 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./welcome.component.scss'],
 })
 export class WelcomeComponent implements OnInit {
+  googleLogging: boolean;
+  twitterLogging: boolean;
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
 
   googleLogin() {
-    this.authService.googleLogin();
+    this.googleLogging = true;
+    this.authService.googleLogin().finally(() => {
+      this.googleLogging = false;
+    });
   }
 
   twitterLogin() {
-    this.authService.twitterLogin();
+    this.twitterLogging = true;
+    this.authService.twitterLogin().finally(() => {
+      this.twitterLogging = false;
+    });
   }
 }

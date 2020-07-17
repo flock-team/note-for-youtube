@@ -1,3 +1,7 @@
 <p>welcome works!</p>
-<button (click)="googleLogin()" mat-raised-button>Googleログイン</button>
-<button (click)="twitterLogin()" mat-raised-button>Twitterログイン</button>
+<button (click)="googleLogin()" mat-raised-button [disabled]="googleLogging">
+  {{ googleLogging ? 'ログイン中' : 'Googleログイン' }}
+</button>
+<button (click)="twitterLogin()" mat-raised-button [disabled]="twitterLogging">
+  {{ twitterLogging ? 'ログイン中' : 'Twitterログイン' }}
+</button>
