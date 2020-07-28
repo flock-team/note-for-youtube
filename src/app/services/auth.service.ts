@@ -12,9 +12,11 @@ import { switchMap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AuthService {
+  uid: string;
   user$: Observable<UserData> = this.afAuth.authState.pipe(
     switchMap((afUser) => {
       if (afUser) {
+        this.uid = afUser?.uid;
         return this.db.doc<UserData>(`users/${afUser.uid}`).valueChanges();
       } else {
         return of(null);
@@ -27,7 +29,9 @@ export class AuthService {
     private db: AngularFirestore,
     private router: Router,
     private snackBar: MatSnackBar
-  ) {}
+  ) {
+    console.log(this.user$);
+  }
 
   googleLogin() {
     const googleProvider = new auth.GoogleAuthProvider();
