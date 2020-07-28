@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DrawerService } from '../services/drawer.service';
 import { AuthService } from '../services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateListComponent } from '../create-list/create-list.component';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +13,8 @@ export class HeaderComponent implements OnInit {
   user$ = this.authService.user$;
   constructor(
     public drawerService: DrawerService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {}
@@ -25,5 +28,12 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+  openCreateList() {
+    this.dialog.open(CreateListComponent, {
+      width: '640px',
+      autoFocus: false,
+      restoreFocus: false,
+    });
   }
 }
