@@ -1,0 +1,55 @@
+<div class="create-list">
+  <h1 class="create-list__title" matDialogTitle>マイリスト作成</h1>
+
+  <mat-dialog-content>
+    <form [formGroup]="form">
+      <mat-form-field class="create-list__input" appearance="outline">
+        <mat-label>名前</mat-label>
+        <input
+          formControlName="listName"
+          matInput
+          #message
+          placeholder="マイリストの名前を入力"
+          autocomplete="off"
+          required
+        />
+        <mat-error *ngIf="listName.hasError('required')"
+          >必須入力です</mat-error
+        >
+        <mat-error *ngIf="listName.hasError('maxlength')"
+          >最大150文字です</mat-error
+        >
+        <mat-hint align="end">{{ message.value.length }} / 150</mat-hint>
+      </mat-form-field>
+    </form>
+    <mat-form-field [formGroup]="form" class="create-list__selector">
+      <mat-label>プライバシー設定</mat-label>
+      <mat-select-trigger> </mat-select-trigger>
+      <mat-select formControlName="privacy" required>
+        <mat-option value="public">
+          公開
+        </mat-option>
+        <mat-option value="limited">
+          限定公開
+        </mat-option>
+        <mat-option value="private">
+          非公開
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="listName.hasError('required')">必須選択です</mat-error>
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="create-list__btn">
+    <button mat-button matDialogClose>キャンセル</button>
+    <button
+      (click)="createPlayList()"
+      color="accent"
+      mat-raised-button
+      mat-button
+      [disabled]="form.invalid || form.pristine"
+    >
+      作成
+    </button>
+  </mat-dialog-actions>
+</div>
