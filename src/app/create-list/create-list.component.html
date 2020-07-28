@@ -12,7 +12,18 @@
           placeholder="マイリストの名前を入力"
           autocomplete="off"
           required
+          [(ngModel)]="value"
         />
+        <button
+          mat-button
+          *ngIf="value"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="value = ''"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
         <mat-error *ngIf="listName.hasError('required')"
           >必須入力です</mat-error
         >

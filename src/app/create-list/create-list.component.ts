@@ -12,6 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./create-list.component.scss'],
 })
 export class CreateListComponent implements OnInit {
+  value = '';
   form = this.fb.group({
     listName: ['', [Validators.required, Validators.maxLength(150)]],
     privacy: [
