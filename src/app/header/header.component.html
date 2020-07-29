@@ -23,7 +23,16 @@
     </div>
 
     <nav class="nav">
-      <button mat-icon-button aria-label="Example icon button with a menu icon">
+      <button
+        class="nav__create-btn"
+        (click)="openCreateList()"
+        mat-icon-button
+        matTooltip="マイリストの追加"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+
+      <button mat-icon-button>
         <mat-icon>notifications</mat-icon>
       </button>
 
