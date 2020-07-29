@@ -8,7 +8,6 @@
         <input
           formControlName="listName"
           matInput
-          #message
           placeholder="マイリストの名前を入力"
           autocomplete="off"
           required
@@ -30,7 +29,7 @@
         <mat-error *ngIf="listName.hasError('maxlength')"
           >最大150文字です</mat-error
         >
-        <mat-hint align="end">{{ message.value.length }} / 150</mat-hint>
+        <mat-hint align="end">{{ listName.value.length }} / 150</mat-hint>
       </mat-form-field>
     </form>
     <mat-form-field [formGroup]="form" class="create-list__selector">
