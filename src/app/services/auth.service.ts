@@ -29,9 +29,7 @@ export class AuthService {
     private db: AngularFirestore,
     private router: Router,
     private snackBar: MatSnackBar
-  ) {
-    console.log(this.user$);
-  }
+  ) {}
 
   googleLogin() {
     const googleProvider = new auth.GoogleAuthProvider();
