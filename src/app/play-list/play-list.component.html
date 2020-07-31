@@ -1,0 +1,47 @@
+<div class="grid">
+  <ng-container *ngIf="user$ | async as user">
+    <div class="card" *ngFor="let playList of playLists$ | async">
+      <a class="card__link" href="">
+        <div
+          class="card__thumbnail"
+          style="background-image: url(http://placehold.jp/1000x1000.png);"
+        ></div>
+        <div class="card__contents">
+          <div
+            class="card__avatar"
+            [style.background-image]="'url(' + user.avatarURL + ')'"
+          ></div>
+          <div class="card__items">
+            <h3 class="card__title">
+              {{ playList.listName }}
+            </h3>
+            <p class="card__sub-title">{{ user.name }}</p>
+            <p class="card__date">
+              {{ playList.createdAt.toDate() | date: 'yyyy年MM月dd日' }}
+            </p>
+          </div>
+        </div>
+      </a>
+      <mat-divider></mat-divider>
+      <div class="card__option" align="end">
+        <button
+          class="card__option-button"
+          [matMenuTriggerFor]="menu"
+          mat-icon-button
+        >
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>settings</mat-icon>
+            <span>編集</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>delete</mat-icon>
+            <span>削除</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </ng-container>
+</div>
