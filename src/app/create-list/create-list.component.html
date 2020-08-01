@@ -6,6 +6,7 @@
       <mat-form-field class="create-list__input" appearance="outline">
         <mat-label>名前</mat-label>
         <input
+          (keydown.enter)="(false)"
           formControlName="listName"
           matInput
           placeholder="マイリストの名前を入力"
