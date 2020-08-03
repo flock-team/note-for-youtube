@@ -2,11 +2,10 @@
   <h1 class="create-list__title" matDialogTitle>マイリスト作成</h1>
 
   <mat-dialog-content>
-    <form [formGroup]="form">
+    <form (keydown.enter)="$event.preventDefault()" [formGroup]="form">
       <mat-form-field class="create-list__input" appearance="outline">
         <mat-label>名前</mat-label>
         <input
-          (keydown.enter)="(false)"
           formControlName="listName"
           matInput
           placeholder="マイリストの名前を入力"
