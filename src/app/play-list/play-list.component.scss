@@ -63,14 +63,18 @@
   &__option-button {
     position: absolute;
     visibility: hidden;
-    margin-bottom: 2px;
     opacity: 0;
+    margin-bottom: 2px;
     z-index: 1;
     bottom: 0;
     right: 0;
     transition: linear 0.1s;
   }
-  .card:hover &__option-button {
+  &__option-button[aria-expanded] {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  &:hover &__option-button {
     visibility: visible;
     opacity: 1;
     position: absolute;
