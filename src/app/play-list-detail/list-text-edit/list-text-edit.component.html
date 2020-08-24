@@ -1,0 +1,41 @@
+<ng-container *ngIf="playList$ | async as playList">
+  <div class="edit-explan">
+    <ng-container *ngIf="isTextEditable; else text">
+      <form [formGroup]="form">
+        <mat-form-field class="edit-explan__form">
+          <textarea
+            formControlName="listText"
+            class="edit-explan__textarea"
+            autofocus
+            matTextareaAutosize
+            type="text"
+            matInput
+            required
+            placeholder="説明"
+          ></textarea>
+        </mat-form-field>
+      </form>
+      <div class="edit-actions">
+        <button
+          class="edit-actions__btn"
+          mat-button
+          (click)="isTextEditable = false"
+        >
+          キャンセル
+        </button>
+        <button class="edit-actions__btn" mat-raised-button color="primary">
+          保存
+        </button>
+      </div>
+    </ng-container>
+
+    <ng-template #text>
+      <div class="edit-explan__text">
+        <p>{{ playList.listText }}</p>
+        <button mat-icon-button (click)="isTextEditable = true">
+          <mat-icon>create</mat-icon>
+        </button>
+      </div>
+    </ng-template>
+  </div>
+</ng-container>
