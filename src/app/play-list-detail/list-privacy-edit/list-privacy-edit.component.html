@@ -1,0 +1,16 @@
+<mat-form-field [formGroup]="form">
+  <mat-label>プライバシー設定</mat-label>
+  <mat-select-trigger> </mat-select-trigger>
+  <mat-select formControlName="privacy" required>
+    <mat-option value="public">
+      公開
+    </mat-option>
+    <mat-option value="limited">
+      限定公開
+    </mat-option>
+    <mat-option value="private">
+      非公開
+    </mat-option>
+  </mat-select>
+  <mat-error *ngIf="privacy.hasError('required')">必須選択です</mat-error>
+</mat-form-field>
