@@ -14,6 +14,7 @@ import { FormBuilder, Validators, FormControl } from '@angular/forms';
 })
 export class ListPrivacyEditComponent implements OnInit {
   private uid = this.authService.uid;
+  private listId: string;
   private listId$: Observable<string> = this.route.paramMap.pipe(
     map((paramMap) => paramMap.get('id'))
   );
@@ -28,20 +29,40 @@ export class ListPrivacyEditComponent implements OnInit {
       [Validators.required, Validators.pattern(/public|limited|private/)],
     ],
   });
-
   get privacy(): FormControl {
     return this.form.get('privacy') as FormControl;
   }
+
   constructor(
     private route: ActivatedRoute,
     private playListService: PlayListService,
     private authService: AuthService,
     private fb: FormBuilder
   ) {
+    this.getListId();
+  }
+
+  ngOnInit(): void {
+    this.setValue();
+  }
+
+  private getListId() {
+    this.listId$.subscribe((id) => {
+      this.listId = id;
+    });
+  }
+
+  private setValue() {
     this.playList$.subscribe((playList) => {
       this.form.patchValue(playList);
     });
   }
 
-  ngOnInit(): void {}
+  updatePrivacy() {
+    const formData = this.form.value;
+    const newValue = {
+      privacy: formData.privacy,
+    };
+    this.playListService.updatePlayList(this.uid, this.listId, newValue);
+  }
 }

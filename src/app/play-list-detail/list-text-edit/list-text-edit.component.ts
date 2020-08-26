@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { PlayListService } from 'src/app/services/play-list.service';
-import { AuthService } from 'src/app/services/auth.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 import { PlayList } from 'functions/src/intarfaces/play-list';
-import { switchMap, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
+import { PlayListService } from 'src/app/services/play-list.service';
 
 @Component({
   selector: 'app-list-text-edit',
@@ -14,6 +14,7 @@ import { switchMap, map } from 'rxjs/operators';
 })
 export class ListTextEditComponent implements OnInit {
   private uid = this.authService.uid;
+  private listId: string;
   private listId$: Observable<string> = this.route.paramMap.pipe(
     map((paramMap) => paramMap.get('id'))
   );
@@ -23,7 +24,7 @@ export class ListTextEditComponent implements OnInit {
     switchMap((listId) => this.playListService.getMyPlayList(this.uid, listId))
   );
   form = this.fb.group({
-    listText: ['aaa', [Validators.maxLength(5000)]],
+    listText: ['', [Validators.maxLength(5000)]],
   });
   get listText(): FormControl {
     return this.form.get('listText') as FormControl;
@@ -34,10 +35,36 @@ export class ListTextEditComponent implements OnInit {
     private authService: AuthService,
     private fb: FormBuilder
   ) {
-    this.playList$.subscribe((playList) => {
-      this.form.patchValue(playList);
+    this.getListId();
+  }
+
+  ngOnInit(): void {
+    this.setValue();
+  }
+
+  private getListId() {
+    this.listId$.subscribe((id) => {
+      this.listId = id;
     });
   }
 
-  ngOnInit(): void {}
+  setValue() {
+    this.playList$.subscribe((playList) => {
+      this.form.patchValue(playList);
+    });
+    this.form.markAsPristine();
+  }
+
+  updateListText() {
+    const formData = this.form.value;
+    const newValue = {
+      listText: formData.listText,
+    };
+    this.playListService
+      .updatePlayList(this.uid, this.listId, newValue)
+      .then(() => {
+        this.form.markAsPristine();
+      });
+    this.isTextEditable = false;
+  }
 }

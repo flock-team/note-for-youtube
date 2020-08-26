@@ -9,12 +9,11 @@
 .edit {
   box-sizing: border-box;
   overflow: auto;
-  height: 100vh;
   &__stats {
     display: flex;
     align-items: center;
     font-size: 13px;
-    color: rgba(white, 0.7);
+    color: rgba(white, 0.6);
     margin-bottom: 16px;
   }
   &__text {

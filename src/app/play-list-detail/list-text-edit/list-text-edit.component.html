@@ -1,7 +1,7 @@
 <ng-container *ngIf="playList$ | async as playList">
   <div class="edit-explan">
     <ng-container *ngIf="isTextEditable; else text">
-      <form [formGroup]="form">
+      <form [formGroup]="form" (ngSubmit)="updateListText()">
         <mat-form-field class="edit-explan__form">
           <textarea
             formControlName="listText"
@@ -10,26 +10,38 @@
             matTextareaAutosize
             type="text"
             matInput
-            required
+            #input
             placeholder="説明"
           ></textarea>
+          <mat-hint align="end">{{ input.value.length }} / 5000</mat-hint>
+          <mat-error class="mat-error" *ngIf="listText.hasError('maxlength')">
+            <p>最大5000文字です</p>
+            <p>{{ input.value.length }} / 5000</p>
+          </mat-error>
         </mat-form-field>
+        <div class="edit-actions">
+          <button
+            class="edit-actions__btn"
+            mat-button
+            type="button"
+            (click)="isTextEditable = false; setValue()"
+          >
+            キャンセル
+          </button>
+          <button
+            class="edit-actions__btn"
+            mat-raised-button
+            color="primary"
+            [disabled]="form.pristine"
+          >
+            保存
+          </button>
+        </div>
       </form>
-      <div class="edit-actions">
-        <button
-          class="edit-actions__btn"
-          mat-button
-          (click)="isTextEditable = false"
-        >
-          キャンセル
-        </button>
-        <button class="edit-actions__btn" mat-raised-button color="primary">
-          保存
-        </button>
-      </div>
     </ng-container>
 
     <ng-template #text>
+      <p class="edit-explan__title">説明</p>
       <div class="edit-explan__text">
         <p>{{ playList.listText }}</p>
         <button mat-icon-button (click)="isTextEditable = true">

@@ -37,4 +37,16 @@ export class PlayListService {
       .doc<PlayList>(`users/${uid}/playLists/${listId}`)
       .valueChanges();
   }
+
+  updatePlayList(
+    uid: string,
+    listId: string,
+    playList: Partial<Omit<PlayList, 'id' | 'creatorId' | 'createdAt'>>
+  ): Promise<void> {
+    const newValue = {
+      ...playList,
+      updateAt: firestore.Timestamp.now(),
+    };
+    return this.db.doc(`users/${uid}/playLists/${listId}`).update(newValue);
+  }
 }

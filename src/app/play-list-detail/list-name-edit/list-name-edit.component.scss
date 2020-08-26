@@ -11,6 +11,10 @@
     align-items: baseline;
     margin-bottom: 16px;
   }
+  &__text {
+    font-weight: 500;
+    word-break: break-word;
+  }
 }
 .edit-actions {
   text-align: right;
