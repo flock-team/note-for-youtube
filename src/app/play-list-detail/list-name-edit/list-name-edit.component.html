@@ -45,11 +45,7 @@
     <ng-template #title>
       <div class="edit-title__name">
         <h3 class="edit-title__text">{{ playList.listName }}</h3>
-        <button
-          class="edit-title__btn"
-          (click)="isTitleEditable = true"
-          mat-icon-button
-        >
+        <button (click)="isTitleEditable = true" mat-icon-button>
           <mat-icon>create</mat-icon>
         </button>
       </div>
