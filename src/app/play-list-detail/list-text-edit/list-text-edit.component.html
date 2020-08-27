@@ -44,7 +44,11 @@
       <p class="edit-explan__title">説明</p>
       <div class="edit-explan__text">
         <p>{{ playList.listText }}</p>
-        <button mat-icon-button (click)="isTextEditable = true">
+        <button
+          class="edit-explan__btn"
+          mat-icon-button
+          (click)="isTextEditable = true"
+        >
           <mat-icon>create</mat-icon>
         </button>
       </div>

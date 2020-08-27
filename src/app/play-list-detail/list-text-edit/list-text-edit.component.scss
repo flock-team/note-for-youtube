@@ -15,6 +15,9 @@
     align-items: baseline;
     word-break: break-word;
   }
+  &__btn {
+    margin: 0 0 0 auto;
+  }
 }
 .edit-actions {
   text-align: right;

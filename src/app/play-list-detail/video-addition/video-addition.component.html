@@ -26,7 +26,11 @@
   <ng-template #movie>
     <div class="edit-movie__action">
       <p>動画を追加する</p>
-      <button mat-icon-button (click)="isMovieEditable = true">
+      <button
+        class="edit-movie__btn"
+        mat-icon-button
+        (click)="isMovieEditable = true"
+      >
         <mat-icon>add</mat-icon>
       </button>
     </div>
