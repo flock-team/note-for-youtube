@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListTextEditComponent } from './list-text-edit.component';
+import { ListTextEditComponent } from './list-description-edit.component';
 
 describe('ListTextEditComponent', () => {
   let component: ListTextEditComponent;

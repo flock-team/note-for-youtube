@@ -11,7 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { ListNameEditComponent } from './list-name-edit/list-name-edit.component';
-import { ListTextEditComponent } from './list-text-edit/list-text-edit.component';
+import { ListTextEditComponent } from './list-description-edit/list-description-edit.component';
 import { ListPrivacyEditComponent } from './list-privacy-edit/list-privacy-edit.component';
 import { VideoAdditionComponent } from './video-addition/video-addition.component';
 

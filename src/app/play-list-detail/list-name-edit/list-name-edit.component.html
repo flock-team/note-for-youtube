@@ -17,10 +17,12 @@
             >必須入力です</mat-error
           >
           <mat-error class="mat-error" *ngIf="listName.hasError('maxlength')">
-            <p>最大150文字です</p>
-            <p>{{ input.value.length }} / 150</p>
+            <p>最大{{ listNameMaxlength }}文字です</p>
+            <p>{{ input.value.length }} / {{ listNameMaxlength }}</p>
           </mat-error>
-          <mat-hint align="end">{{ input.value.length }} / 150</mat-hint>
+          <mat-hint align="end"
+            >{{ input.value.length }} / {{ listNameMaxlength }}</mat-hint
+          >
         </mat-form-field>
         <div class="edit-actions">
           <button

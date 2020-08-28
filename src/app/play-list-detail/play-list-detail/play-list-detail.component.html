@@ -1,16 +1,18 @@
 <ng-container *ngIf="playList$ | async as playList; else blank">
   <div class="grid">
     <div class="edit">
-      <app-list-name-edit></app-list-name-edit>
+      <app-list-name-edit [playList$]="playList$"></app-list-name-edit>
       <div class="edit__stats">
         <p>動画数 / 0</p>
         <p>
           ・更新日 / {{ playList.updateAt.toDate() | date: 'yyyy年MM月dd日' }}
         </p>
       </div>
-      <app-list-privacy-edit></app-list-privacy-edit>
+      <app-list-privacy-edit [playList$]="playList$"></app-list-privacy-edit>
       <app-video-addition></app-video-addition>
-      <app-list-text-edit></app-list-text-edit>
+      <app-list-description-edit
+        [playList$]="playList$"
+      ></app-list-description-edit>
 
       <mat-divider></mat-divider>
     </div>

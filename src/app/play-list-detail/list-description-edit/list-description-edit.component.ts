@@ -7,27 +7,23 @@ import { AuthService } from 'src/app/services/auth.service';
 import { PlayListService } from 'src/app/services/play-list.service';
 
 @Component({
-  selector: 'app-list-name-edit',
-  templateUrl: './list-name-edit.component.html',
-  styleUrls: ['./list-name-edit.component.scss'],
+  selector: 'app-list-description-edit',
+  templateUrl: './list-description-edit.component.html',
+  styleUrls: ['./list-description-edit.component.scss'],
 })
-export class ListNameEditComponent implements OnInit {
+export class ListTextEditComponent implements OnInit {
   @Input() playList$: Observable<PlayList>;
 
   private uid = this.authService.uid;
 
-  isTitleEditable: boolean;
-  listNameMaxlength = 150;
+  isEditable: boolean;
+  DescriptionMaxlength = 200;
   form = this.fb.group({
-    listName: [
-      '',
-      [Validators.required, Validators.maxLength(this.listNameMaxlength)],
-    ],
+    description: ['', [Validators.maxLength(this.DescriptionMaxlength)]],
   });
-  get listName(): FormControl {
-    return this.form.get('listName') as FormControl;
+  get description(): FormControl {
+    return this.form.get('description') as FormControl;
   }
-
   constructor(
     private route: ActivatedRoute,
     private playListService: PlayListService,
@@ -46,15 +42,15 @@ export class ListNameEditComponent implements OnInit {
     this.form.markAsPristine();
   }
 
-  updateListName() {
+  updateDescription() {
     const formData = this.form.value;
     const listId = this.route.snapshot.paramMap.get('id');
     const newValue = {
-      listName: formData.listName,
+      description: formData.description,
     };
     this.playListService.updatePlayList(this.uid, listId, newValue).then(() => {
       this.form.markAsPristine();
     });
-    this.isTitleEditable = false;
+    this.isEditable = false;
   }
 }

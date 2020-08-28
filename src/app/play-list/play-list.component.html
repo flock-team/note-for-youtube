@@ -1,11 +1,7 @@
 <div class="grid">
   <ng-container *ngIf="user$ | async as user">
     <div class="card" *ngFor="let playList of playLists$ | async">
-      <a
-        class="card__link"
-        routerLink="/play-list-detail/{{ playList.id }}"
-        href=""
-      >
+      <a class="card__link" routerLink="/play-list-detail/{{ playList.id }}">
         <div
           class="card__thumbnail"
           style="background-image: url(http://placehold.jp/1000x1000.png);"
