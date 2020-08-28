@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class PlayListService {
   constructor(private db: AngularFirestore, private authService: AuthService) {}
-
+  listId: string;
   createPlayList(
     playList: Omit<PlayList, 'id' | 'createdAt' | 'updateAt'>
   ): Promise<void> {
@@ -30,5 +30,23 @@ export class PlayListService {
     return this.db
       .collection<PlayList>(`users/${uid}/playLists`)
       .valueChanges();
+  }
+
+  getMyPlayList(uid: string, listId: string): Observable<PlayList> {
+    return this.db
+      .doc<PlayList>(`users/${uid}/playLists/${listId}`)
+      .valueChanges();
+  }
+
+  updatePlayList(
+    uid: string,
+    listId: string,
+    playList: Partial<Omit<PlayList, 'id' | 'creatorId' | 'createdAt'>>
+  ): Promise<void> {
+    const newValue = {
+      ...playList,
+      updateAt: firestore.Timestamp.now(),
+    };
+    return this.db.doc(`users/${uid}/playLists/${listId}`).update(newValue);
   }
 }

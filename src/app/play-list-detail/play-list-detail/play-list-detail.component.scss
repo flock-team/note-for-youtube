@@ -1,0 +1,23 @@
+.grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 24px;
+  padding: 24px 0;
+  margin: 0;
+}
+
+.edit {
+  box-sizing: border-box;
+  overflow: auto;
+  &__stats {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    color: rgba(white, 0.6);
+    margin-bottom: 16px;
+  }
+  &__text {
+    display: flex;
+    align-items: center;
+  }
+}
