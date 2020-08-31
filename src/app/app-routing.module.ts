@@ -14,6 +14,15 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'play-list-detail',
+    loadChildren: () =>
+      import('src/app/play-list-detail/play-list-detail.module').then(
+        (m) => m.PlayListDetailModule
+      ),
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'welcome',
     loadChildren: () =>
       import('src/app/welcome/welcome.module').then((m) => m.WelcomeModule),

@@ -40,7 +40,7 @@ export class CreateListComponent implements OnInit {
       listName: formData.listName,
       privacy: formData.privacy,
       creatorId: this.authService.uid,
-      listText: '',
+      description: '',
     };
     return this.playListService.createPlayList(newValue).then(() => {
       this.dialog.close();

@@ -1,0 +1,25 @@
+.edit-title {
+  &__form {
+    width: 100%;
+  }
+  &__input {
+    font-size: 1.17em;
+    font-weight: bold;
+  }
+  &__name {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 16px;
+    justify-content: space-between;
+  }
+  &__text {
+    font-weight: 500;
+    word-break: break-word;
+  }
+}
+.edit-actions {
+  text-align: right;
+  &__btn {
+    margin-left: 8px;
+  }
+}

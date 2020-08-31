@@ -1,0 +1,35 @@
+<div class="edit-movie">
+  <ng-container *ngIf="isMovieEditable; else movie">
+    <mat-form-field class="edit-movie__form">
+      <input
+        class="edit-movie__input"
+        placeholder="動画のURLを入力して下さい"
+        autocomplete="off"
+        type="url"
+        matInput
+        autofocus
+        #input
+      />
+    </mat-form-field>
+    <div class="edit-actions">
+      <button
+        class="edit-actions__btn"
+        mat-button
+        (click)="isMovieEditable = false"
+      >
+        キャンセル
+      </button>
+      <button class="edit-actions__btn" mat-raised-button color="primary">
+        保存
+      </button>
+    </div>
+  </ng-container>
+  <ng-template #movie>
+    <div class="edit-movie__action">
+      <p>動画を追加する</p>
+      <button mat-icon-button (click)="isMovieEditable = true">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </ng-template>
+</div>
