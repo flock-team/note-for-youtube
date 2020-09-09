@@ -14,6 +14,7 @@ import { ListNameEditComponent } from './list-name-edit/list-name-edit.component
 import { ListTextEditComponent } from './list-description-edit/list-description-edit.component';
 import { ListPrivacyEditComponent } from './list-privacy-edit/list-privacy-edit.component';
 import { VideoAdditionComponent } from './video-addition/video-addition.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { VideoAdditionComponent } from './video-addition/video-addition.componen
     MatSelectModule,
     MatInputModule,
     MatDividerModule,
+    MatSnackBarModule,
   ],
 })
 export class PlayListDetailModule {}
