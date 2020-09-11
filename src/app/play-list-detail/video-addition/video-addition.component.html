@@ -1,6 +1,6 @@
 <div class="edit-movie">
   <ng-container *ngIf="!isMovieEditable; else movie">
-    <mat-form-field class="edit-movie__form" [formGroup]="form">
+    <mat-form-field class="edit-movie__form">
       <input
         class="edit-movie__input"
         placeholder="動画のURLを入力して下さい"
@@ -9,7 +9,7 @@
         matInput
         autofocus
         #input
-        formControlName="videoUrlId"
+        [formControl]="urlIdControl"
       />
     </mat-form-field>
     <div class="edit-actions">
