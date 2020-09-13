@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Video } from '../interfaces/video';
+import { firestore } from 'firebase';
 
 @Injectable({
   providedIn: 'root',
@@ -49,9 +50,18 @@ export class VideoService {
       .valueChanges();
   }
 
-  createVideo(uid: string, listId: string, video: Video): Promise<void> {
+  createVideo(
+    uid: string,
+    listId: string,
+    video: Omit<Video, 'createdAt' | 'updatedAt'>
+  ): Promise<void> {
+    const value: Video = {
+      ...video,
+      createdAt: firestore.Timestamp.now(),
+      updatedAt: firestore.Timestamp.now(),
+    };
     return this.db
       .doc<Video>(`users/${uid}/playLists/${listId}/videos/${video.videoId}`)
-      .set(video);
+      .set(value);
   }
 }

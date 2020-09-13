@@ -1,34 +1,58 @@
 <div class="edit-movie">
-  <ng-container *ngIf="!isMovieEditable; else movie">
-    <mat-form-field class="edit-movie__form">
-      <input
-        class="edit-movie__input"
-        placeholder="動画のURLを入力して下さい"
-        autocomplete="off"
-        type="url"
-        matInput
-        autofocus
-        #input
-        [formControl]="urlIdControl"
-      />
-    </mat-form-field>
-    <div class="edit-actions">
-      <button
-        class="edit-actions__btn"
-        mat-button
-        (click)="isMovieEditable = false"
-      >
-        キャンセル
-      </button>
-      <button
-        (click)="addVideo()"
-        class="edit-actions__btn"
-        mat-raised-button
-        color="primary"
-      >
-        追加する
-      </button>
-    </div>
+  <ng-container *ngIf="isMovieEditable; else movie">
+    <form
+      *ngIf="
+        maxVideoLimit > videos.length || urlIdControl.value.length === 0;
+        else error
+      "
+      (keydown.enter)="$event.preventDefault()"
+    >
+      <mat-form-field class="edit-movie__form">
+        <input
+          class="edit-movie__input"
+          placeholder="動画のURLを入力して下さい"
+          autocomplete="off"
+          type="url"
+          matInput
+          autofocus
+          #input
+          [formControl]="urlIdControl"
+        />
+        <button mat-button matSuffix mat-icon-button (click)="clearForm()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <div class="edit-actions">
+        <button
+          class="edit-actions__btn"
+          mat-button
+          (click)="isMovieEditable = false; clearForm()"
+        >
+          キャンセル
+        </button>
+        <button
+          (click)="addVideo(); clearForm()"
+          class="edit-actions__btn"
+          mat-raised-button
+          color="primary"
+          [disabled]="maxVideoLimit <= videos.length"
+        >
+          追加する
+        </button>
+      </div>
+    </form>
+    <ng-template #error>
+      <div class="limits-error">
+        <p>
+          動画は最大50件まで追加可能です。新しく追加したい場合は動画を削除するか、新しいマイリストを作成して下さい。
+        </p>
+        <mat-icon
+          class="limits-error__close"
+          (click)="isMovieEditable = false; clearForm()"
+          >close</mat-icon
+        >
+      </div>
+    </ng-template>
   </ng-container>
   <ng-template #movie>
     <div class="edit-movie__action">

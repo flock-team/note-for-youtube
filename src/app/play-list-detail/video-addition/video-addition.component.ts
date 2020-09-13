@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
@@ -19,11 +19,12 @@ export class VideoAdditionComponent implements OnInit, OnDestroy {
     this.uid,
     this.listId
   );
-  private videos: Video[];
   private subscriptions: Subscription = new Subscription();
 
   urlIdControl: FormControl = new FormControl('');
   isMovieEditable: boolean;
+  videos: Video[];
+  maxVideoLimit = 50;
 
   constructor(
     private videoService: VideoService,
@@ -42,6 +43,10 @@ export class VideoAdditionComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
+  }
+
+  clearForm() {
+    this.urlIdControl.setValue('');
   }
 
   async addVideo() {
@@ -68,22 +73,15 @@ export class VideoAdditionComponent implements OnInit, OnDestroy {
     const videoItem: any = await this.videoService.getVideoItem(videoId);
     const targetVideo = this.videos.find((video) => video.videoId === videoId);
 
-    if (this.videos.length >= 50) {
-      this.snackBar.open(
-        '動画を追加出来ませんでした。マイリストに追加出来る動画は最大50件までです。'
-      );
-      return;
-    }
-
     if (targetVideo) {
       this.snackBar.open('指定されたURLの動画は既に追加されています。');
       return;
-    } else {
-      await this.createAction({
-        video: videoItem.items[0],
-        videoId,
-      });
     }
+
+    await this.createAction({
+      video: videoItem.items[0],
+      videoId,
+    });
     this.snackBar.open('動画が追加されました！');
   }
 
@@ -94,34 +92,34 @@ export class VideoAdditionComponent implements OnInit, OnDestroy {
         (video) => video.videoId === item.snippet.resourceId.videoId
       );
     });
+    const filteringVideoId = playlists.items.filter((item) => {
+      return this.videos.find(
+        (video) => video.videoId === item.snippet.resourceId.videoId
+      );
+    });
     const createVideo = videoItems.map(
       async (video) =>
         await this.createAction({
           video,
         })
     );
-    const maxVideo = 50;
 
     if (videoItems.length === 0) {
       this.snackBar.open(
-        '指定されたURLのプレイリストには既に追加されているか、追加できる動画がありませんでした。'
-      );
-      return;
-    } else if (this.videos.length <= maxVideo) {
-      this.snackBar.open(
-        '動画は50件以上追加出来ません。マイリストの動画を削除するか、動画数が50件以内の追加したいプレイリストのURLを入力してください。'
+        '指定されたプレイリストには、追加できる動画がありませんでした。'
       );
       return;
     }
 
-    if (videoItems.length <= 1 && videoItems.length >= maxVideo) {
-      Promise.all(createVideo);
-      this.snackBar.open(
-        '指定されたURLのプレイリストには既に追加されている動画がありましたので、一部の動画のみ追加しました！'
-      );
-    } else if (videoItems.length === maxVideo) {
+    if (filteringVideoId.length === 0) {
       Promise.all(createVideo);
       this.snackBar.open('動画が追加されました！');
+      return;
+    } else {
+      Promise.all(createVideo);
+      this.snackBar.open(
+        '既に追加されている動画がありましたので、一部の動画を追加しました！'
+      );
     }
   }
 
@@ -129,7 +127,7 @@ export class VideoAdditionComponent implements OnInit, OnDestroy {
     video: any;
     videoId?: string;
   }): Promise<void> {
-    const videoContens: Video = {
+    const videoContens: Omit<Video, 'createdAt' | 'updatedAt'> = {
       videoId: params.videoId || params.video.snippet.resourceId.videoId,
       title: params.video.snippet.title,
       thumbnailURL: params.video.snippet.thumbnails.medium.url,
