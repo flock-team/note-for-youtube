@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
@@ -13,12 +13,9 @@ import { VideoService } from 'src/app/services/video.service';
   styleUrls: ['./video-addition.component.scss'],
 })
 export class VideoAdditionComponent implements OnInit, OnDestroy {
+  @Input() videos$: Observable<Video[]>;
   private uid = this.authService.uid;
   private listId = this.route.snapshot.paramMap.get('id');
-  private videos$: Observable<Video[]> = this.videoService.getVideos(
-    this.uid,
-    this.listId
-  );
   private subscriptions: Subscription = new Subscription();
 
   urlIdControl: FormControl = new FormControl('');
@@ -118,7 +115,7 @@ export class VideoAdditionComponent implements OnInit, OnDestroy {
     } else {
       Promise.all(createVideo);
       this.snackBar.open(
-        '既に追加されている動画がありましたので、一部の動画を追加しました！'
+        '重複する動画がありましたので、一部の動画を追加しました！'
       );
     }
   }
