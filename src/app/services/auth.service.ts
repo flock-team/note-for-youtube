@@ -35,9 +35,7 @@ export class AuthService {
     const googleProvider = new auth.GoogleAuthProvider();
     googleProvider.setCustomParameters({ prompt: 'select_account' });
     return this.afAuth.signInWithPopup(googleProvider).then(() => {
-      this.snackBar.open('ログインしました', null, {
-        duration: 2000,
-      });
+      this.snackBar.open('ログインしました');
       this.router.navigateByUrl('/');
     });
   }
@@ -46,18 +44,14 @@ export class AuthService {
     const twitterProvider = new auth.TwitterAuthProvider();
     twitterProvider.setCustomParameters({ prompt: 'select_account' });
     return this.afAuth.signInWithPopup(twitterProvider).then(() => {
-      this.snackBar.open('ログインしました', null, {
-        duration: 2000,
-      });
+      this.snackBar.open('ログインしました');
       this.router.navigateByUrl('/');
     });
   }
 
   logout() {
     this.afAuth.signOut().then(() => {
-      this.snackBar.open('ログアウトしました', null, {
-        duration: 2000,
-      });
+      this.snackBar.open('ログアウトしました');
       this.router.navigateByUrl('/welcome');
     });
   }

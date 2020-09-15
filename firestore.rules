@@ -5,7 +5,13 @@ service cloud.firestore {
       allow read, create: if true;
       allow update, delete: if request.auth.uid == resource.data.uid;
     }
-    match /users/{uid}/playLists/{id} {
+    match /users/{uid}/playLists/{listId} {
+      allow read: if true;
+      allow create: if request.auth.uid != null;
+      allow update: if request.auth.uid == resource.data.creatorId && resource.data.creatorId == request.resource.data.creatorId;
+      allow delete: if request.auth.uid == resource.data.creatorId;
+    }
+    match /users/{uid}/playLists/{listId}/videos/{videoId} {
       allow read: if true;
       allow create: if request.auth.uid != null;
       allow update: if request.auth.uid == resource.data.creatorId && resource.data.creatorId == request.resource.data.creatorId;

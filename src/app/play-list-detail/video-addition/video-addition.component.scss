@@ -11,7 +11,22 @@
 }
 .edit-actions {
   text-align: right;
+  margin-bottom: 16px;
   &__btn {
     margin-left: 8px;
+  }
+}
+.limits-error {
+  border-radius: 4px;
+  margin-bottom: 8px;
+  padding: 16px 24px;
+  background-color: #f44336;
+  position: relative;
+  &__close {
+    margin: 8px 8px 0 0;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 }

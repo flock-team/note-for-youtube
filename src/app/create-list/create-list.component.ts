@@ -44,9 +44,7 @@ export class CreateListComponent implements OnInit {
     };
     return this.playListService.createPlayList(newValue).then(() => {
       this.dialog.close();
-      this.snackBar.open('マイリストを作成しました😎', null, {
-        duration: 2000,
-      });
+      this.snackBar.open('マイリストを作成しました😎');
     });
   }
 }
