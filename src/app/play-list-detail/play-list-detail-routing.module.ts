@@ -4,10 +4,6 @@ import { PlayListDetailComponent } from './play-list-detail/play-list-detail.com
 
 const routes: Routes = [
   {
-    path: '',
-    component: PlayListDetailComponent,
-  },
-  {
     path: ':id',
     component: PlayListDetailComponent,
   },

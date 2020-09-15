@@ -3,24 +3,24 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav
     color="basic"
-    [class.open]="!drawerService.drawerState"
-    [class.close]="drawerService.drawerState"
+    [class.open]="drawerService.isDrawerNavOpen"
+    [class.close]="!drawerService.isDrawerNavOpen"
     #sidenav
     fixedInViewport
     fixedTopGap="64"
     mode="side"
     opened
-    [@onDrawerChange]="!drawerService.drawerState ? 'open' : 'close'"
+    [@onDrawerChange]="drawerService.isDrawerNavOpen ? 'open' : 'close'"
   >
-    <app-mini-variant *ngIf="drawerService.drawerState"></app-mini-variant>
+    <app-mini-variant *ngIf="!drawerService.isDrawerNavOpen"></app-mini-variant>
     <app-drawer
-      *ngIf="!drawerService.drawerState"
-      [@animateText]="!drawerService.linkText ? 'show' : 'hide'"
+      *ngIf="drawerService.isDrawerNavOpen"
+      [@animateText]="drawerService.isDrawerTextOpen ? 'open' : 'close'"
     ></app-drawer>
   </mat-sidenav>
 
   <mat-sidenav-content
-    [@onMainContentChange]="!drawerService.drawerState ? 'open' : 'close'"
+    [@onMainContentChange]="drawerService.isDrawerNavOpen ? 'open' : 'close'"
   >
     <div class="container">
       <router-outlet></router-outlet>
