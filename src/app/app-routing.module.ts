@@ -15,6 +15,10 @@ const routes: Routes = [
   },
   {
     path: 'play-list-detail',
+    data: {
+      isDrawerNavOpen: false,
+      isDrawerTextOpen: false,
+    },
     loadChildren: () =>
       import('src/app/play-list-detail/play-list-detail.module').then(
         (m) => m.PlayListDetailModule
