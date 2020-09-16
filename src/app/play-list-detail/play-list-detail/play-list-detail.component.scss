@@ -1,14 +1,12 @@
-.grid {
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 24px;
-  padding: 24px 0;
-  margin: 0;
-}
-
 .edit {
+  padding: 24px 0;
   box-sizing: border-box;
   overflow: auto;
+  &__form-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
+  }
   &__stats {
     display: flex;
     align-items: center;
@@ -20,4 +18,10 @@
     display: flex;
     align-items: center;
   }
+}
+
+.video-list-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(240px, 1fr));
+  gap: 24px;
 }

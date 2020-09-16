@@ -1,0 +1,26 @@
+<a class="video-list" *ngFor="let video of videos$ | async">
+  <figure
+    class="video-list__thumbnail"
+    [style.background-image]="'url(' + video.thumbnailURL + ')'"
+  ></figure>
+  <div class="video-list__contents">
+    <p class="video-list__title">{{ video.title }}</p>
+    <p class="video-list__updated">
+      更新日: {{ video.updatedAt.toDate() | date: 'yyyy/MM/dd' }}
+    </p>
+  </div>
+  <div class="video-list__option-btn" align="end">
+    <button [matMenuTriggerFor]="menu" mat-icon-button>
+      <mat-icon>more_horiz</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button
+        (click)="this.videoService.deleteVideo(uid, listId, video.videoId)"
+        mat-menu-item
+      >
+        <mat-icon>delete</mat-icon>
+        <span>削除</span>
+      </button>
+    </mat-menu>
+  </div>
+</a>

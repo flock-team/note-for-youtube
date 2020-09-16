@@ -5,13 +5,18 @@ import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Video } from '../interfaces/video';
 import { firestore } from 'firebase';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
 })
 export class VideoService {
   apiKey = 'AIzaSyAF68vjlrasVO1_qbwg4vfnE-0P44hxauY';
-  constructor(private db: AngularFirestore, private http: HttpClient) {}
+  constructor(
+    private db: AngularFirestore,
+    private http: HttpClient,
+    private snackBar: MatSnackBar
+  ) {}
 
   getVideoItem(id: string): Promise<object> {
     return this.http
@@ -63,5 +68,15 @@ export class VideoService {
     return this.db
       .doc<Video>(`users/${uid}/playLists/${listId}/videos/${video.videoId}`)
       .set(value);
+  }
+
+  deleteVideo(uid: string, listId: string, videoId: string): Promise<void> {
+    console.log(videoId);
+    return this.db
+      .doc<Video>(`users/${uid}/playLists/${listId}/videos/${videoId}`)
+      .delete()
+      .then(() => {
+        this.snackBar.open('動画を削除しました');
+      });
   }
 }

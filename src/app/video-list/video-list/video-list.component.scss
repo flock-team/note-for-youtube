@@ -1,0 +1,42 @@
+@import '~@angular/material/theming';
+
+.video-list {
+  @include mat-elevation-transition;
+  @include mat-elevation(2);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  &:hover {
+    @include mat-elevation-transition;
+    @include mat-elevation(10);
+    background-color: rgba(#ffffff, 0.1);
+  }
+  &__thumbnail {
+    padding-bottom: 56%;
+    background: #ffffff 50% / cover;
+  }
+  &__contents {
+    padding: 16px;
+  }
+  &__title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  &__updated {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  &__option-btn {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    right: 0;
+  }
+}
