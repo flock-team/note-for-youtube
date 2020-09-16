@@ -84,6 +84,7 @@ export class VideoAdditionComponent implements OnInit, OnDestroy {
 
   private async createPlyalistVideos(playlistId: string) {
     const playlists: any = await this.videoService.getPlaylistItems(playlistId);
+    console.log(playlists);
     const videoItems = playlists.items.filter((item) => {
       return !this.videos.find(
         (video) => video.videoId === item.snippet.resourceId.videoId
@@ -125,9 +126,10 @@ export class VideoAdditionComponent implements OnInit, OnDestroy {
     videoId?: string;
   }): Promise<void> {
     const videoContens: Omit<Video, 'createdAt' | 'updatedAt'> = {
+      creatorId: this.authService.uid,
       videoId: params.videoId || params.video.snippet.resourceId.videoId,
       title: params.video.snippet.title,
-      thumbnailURL: params.video.snippet.thumbnails.medium.url,
+      thumbnailURL: params.video.snippet.thumbnails.maxres.url,
     };
     return this.videoService.createVideo(this.uid, this.listId, videoContens);
   }
