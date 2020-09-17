@@ -12,21 +12,12 @@ import { VideoService } from 'src/app/services/video.service';
 export class VideoListComponent implements OnInit {
   @Input() videos$: Observable<Video[]>;
   @Input() listId: string;
-  videos: Video[];
   uid = this.authService.uid;
-
-  private subscriptions: Subscription = new Subscription();
 
   constructor(
     private authService: AuthService,
     public videoService: VideoService
   ) {}
 
-  ngOnInit(): void {
-    this.subscriptions.add(
-      this.videos$.subscribe((videos) => {
-        this.videos = videos;
-      })
-    );
-  }
+  ngOnInit(): void {}
 }
