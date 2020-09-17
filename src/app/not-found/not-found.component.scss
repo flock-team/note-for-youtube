@@ -1,0 +1,40 @@
+body {
+  background-color: #eee;
+}
+.container {
+  height: 100%;
+  place-items: center;
+  display: grid;
+}
+
+.not-found {
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: fit-content(40%) fit-content(100%);
+  gap: 80px;
+  @media screen and (max-width: 750px) {
+    grid-template-columns: none;
+    gap: 0;
+  }
+  place-items: center;
+  &__contents {
+    text-align: center;
+  }
+  &__title {
+    font-size: 80px;
+    margin-bottom: 32px;
+    @media screen and (max-width: 750px) {
+      font-size: 60px;
+    }
+  }
+  &__text {
+    font-size: 20px;
+    margin-bottom: 32px;
+  }
+  &__top-btn {
+    margin-bottom: 32px;
+  }
+  &__img {
+    max-width: 100%;
+  }
+}

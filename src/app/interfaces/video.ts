@@ -1,6 +1,7 @@
 import { firestore } from 'firebase';
 
 export interface Video {
+  creatorId: string;
   videoId: string;
   title: string;
   thumbnailURL?: string;

@@ -4,8 +4,6 @@ import {
   style,
   transition,
   animate,
-  animateChild,
-  query,
 } from '@angular/animations';
 
 export const onDrawerChange = trigger('onDrawerChange', [
@@ -21,8 +19,8 @@ export const onDrawerChange = trigger('onDrawerChange', [
       width: '240px',
     })
   ),
-  transition('close => open', animate('200ms ease-in')),
-  transition('open => close', animate('250ms ease-out')),
+  transition('close => open', animate('100ms ease-in')),
+  transition('open => close', animate('100ms ease-out')),
 ]);
 
 export const onMainContentChange = trigger('onMainContentChange', [
@@ -38,25 +36,23 @@ export const onMainContentChange = trigger('onMainContentChange', [
       'margin-left': '240px',
     })
   ),
-  transition('close => open', animate('150ms ease-in')),
-  transition('open => close', animate('150ms ease-in')),
+  transition('close => open', animate('100ms ease-in')),
+  transition('open => close', animate('100ms ease-in')),
 ]);
 
 export const animateText = trigger('animateText', [
   state(
-    'hide',
+    'close',
     style({
       display: 'none',
       opacity: 0,
     })
   ),
   state(
-    'show',
+    'open',
     style({
       display: 'block',
       opacity: 1,
     })
   ),
-  transition('close => open', animate('100ms ease-in')),
-  transition('open => close', animate('100ms ease-out')),
 ]);

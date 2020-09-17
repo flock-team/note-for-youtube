@@ -20,10 +20,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {}
 
   onDrawerToggle() {
-    this.drawerService.drawerState = !this.drawerService.drawerState;
+    this.drawerService.isDrawerNavOpen = !this.drawerService.isDrawerNavOpen;
     setTimeout(() => {
-      this.drawerService.linkText = this.drawerService.drawerState;
-    }, 200);
+      this.drawerService.isDrawerTextOpen = this.drawerService.isDrawerNavOpen;
+    }, 100);
   }
 
   logout() {
