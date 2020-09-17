@@ -7,14 +7,15 @@
   overflow: hidden;
   position: relative;
   cursor: pointer;
+  background-color: map_get($mat-grey, 800);
   &:hover {
     @include mat-elevation-transition;
     @include mat-elevation(10);
-    background-color: rgba(#ffffff, 0.1);
+    background-color: rgba(white, 0.04);
   }
   &__thumbnail {
     padding-bottom: 56%;
-    background: #ffffff 50% / cover;
+    background: rgba(black, 0.38) 50% / cover;
   }
   &__contents {
     padding: 16px;
@@ -31,7 +32,7 @@
   }
   &__updated {
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.7);
+    color: $light-secondary-text;
   }
   &__option-btn {
     position: absolute;
