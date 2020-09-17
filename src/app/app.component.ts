@@ -1,22 +1,16 @@
 import { Component } from '@angular/core';
 import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
-import {
-  animateText,
-  onDrawerChange,
-  onMainContentChange,
-} from './animations/animations';
 import { DrawerService } from './services/drawer.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [onDrawerChange, onMainContentChange, animateText],
 })
 export class AppComponent {
   title = 'note-for-youtube';
 
-  constructor(public drawerService: DrawerService, private router: Router) {
+  constructor(private drawerService: DrawerService, private router: Router) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const route = this.getChildRoute(this.router.routerState.snapshot.root);
