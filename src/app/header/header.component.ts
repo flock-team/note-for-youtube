@@ -3,6 +3,7 @@ import { DrawerService } from '../services/drawer.service';
 import { AuthService } from '../services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateListComponent } from '../create-list/create-list.component';
+import { UserData } from 'functions/src/intarfaces/user';
 
 @Component({
   selector: 'app-header',
@@ -35,5 +36,14 @@ export class HeaderComponent implements OnInit {
       autoFocus: false,
       restoreFocus: false,
     });
+  }
+  test(user: UserData) {
+    this.dialog.open(CreateListComponent, {
+      width: '640px',
+      autoFocus: false,
+      restoreFocus: false,
+      data: user,
+    });
+    console.log(user);
   }
 }

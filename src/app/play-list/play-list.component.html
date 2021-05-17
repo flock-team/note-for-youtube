@@ -4,7 +4,7 @@
       <a class="card__link" routerLink="/play-list-detail/{{ playList.id }}">
         <div
           class="card__thumbnail"
-          style="background-image: url(http://placehold.jp/1000x1000.png);"
+          [style.background-image]="'url(' + playList.thumbnailURL + ')'"
         ></div>
         <div class="card__contents">
           <div

@@ -2,9 +2,11 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import { PlayList } from 'functions/src/intarfaces/play-list';
 import { Observable, Subscription } from 'rxjs';
 import { Video } from 'src/app/interfaces/video';
 import { AuthService } from 'src/app/services/auth.service';
+import { PlayListService } from 'src/app/services/play-list.service';
 import { VideoService } from 'src/app/services/video.service';
 
 @Component({
@@ -26,6 +28,7 @@ export class VideoAdditionComponent implements OnInit, OnDestroy {
   constructor(
     private videoService: VideoService,
     private authService: AuthService,
+    private playlistService: PlayListService,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar
   ) {}
@@ -60,7 +63,7 @@ export class VideoAdditionComponent implements OnInit, OnDestroy {
     }
 
     if (videoId) {
-      await this.createVideo(videoId[1]);
+      await this.createVideo(videoId[1]).then(() => {});
     } else if (playlistId) {
       await this.createPlyalistVideos(playlistId[1]);
     }
@@ -84,7 +87,6 @@ export class VideoAdditionComponent implements OnInit, OnDestroy {
 
   private async createPlyalistVideos(playlistId: string) {
     const playlists: any = await this.videoService.getPlaylistItems(playlistId);
-    console.log(playlists);
     const videoItems = playlists.items.filter((item) => {
       return !this.videos.find(
         (video) => video.videoId === item.snippet.resourceId.videoId
@@ -112,12 +114,15 @@ export class VideoAdditionComponent implements OnInit, OnDestroy {
     if (filteringVideoId.length === 0) {
       Promise.all(createVideo);
       this.snackBar.open('動画が追加されました！');
+      console.log(filteringVideoId);
       return;
     } else {
       Promise.all(createVideo);
       this.snackBar.open(
         '重複する動画がありましたので、一部の動画を追加しました！'
       );
+      console.log(filteringVideoId);
+      console.log(videoItems);
     }
   }
 
@@ -131,6 +136,28 @@ export class VideoAdditionComponent implements OnInit, OnDestroy {
       title: params.video.snippet.title,
       thumbnailURL: params.video.snippet.thumbnails.maxres.url,
     };
-    return this.videoService.createVideo(this.uid, this.listId, videoContens);
+    return this.videoService
+      .createVideo(this.uid, this.listId, videoContens)
+      .then(() => {
+        this.subscriptions.add(
+          this.videoService
+            .getVideos(this.uid, this.listId)
+            .subscribe((video) => {
+              const url: Omit<
+                PlayList,
+                | 'listName'
+                | 'id'
+                | 'creatorId'
+                | 'description'
+                | 'privacy'
+                | 'createdAt'
+                | 'updateAt'
+              > = {
+                thumbnailURL: video[0].thumbnailURL,
+              };
+              this.playlistService.updatePlayList(this.uid, this.listId, url);
+            })
+        );
+      });
   }
 }

@@ -16,6 +16,8 @@ import { ListPrivacyEditComponent } from './list-privacy-edit/list-privacy-edit.
 import { VideoAdditionComponent } from './video-addition/video-addition.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { VideoListModule } from '../video-list/video-list.module';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { VideoListModule } from '../video-list/video-list.module';
     MatDividerModule,
     MatSnackBarModule,
     VideoListModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class PlayListDetailModule {}

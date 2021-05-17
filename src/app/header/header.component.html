@@ -37,6 +37,7 @@
       </button>
 
       <div *ngIf="user$ | async as user">
+        <button mat-raised-button (click)="test(user)">test</button>
         <button
           class="nav__user-avatar"
           mat-mini-fab

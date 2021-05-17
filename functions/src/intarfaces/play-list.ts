@@ -5,6 +5,7 @@ export interface PlayList {
   creatorId: string;
   listName: string;
   description?: string;
+  thumbnailURL?: string;
   privacy: string;
   createdAt: firestore.Timestamp;
   updateAt: firestore.Timestamp;

@@ -12,6 +12,7 @@ export class PlayListService {
   constructor(private db: AngularFirestore, private authService: AuthService) {}
   listId: string;
   createPlayList(
+    uid: string,
     playList: Omit<PlayList, 'id' | 'createdAt' | 'updateAt'>
   ): Promise<void> {
     const id = this.db.createId();
@@ -21,9 +22,7 @@ export class PlayListService {
       createdAt: firestore.Timestamp.now(),
       updateAt: firestore.Timestamp.now(),
     };
-    return this.db
-      .doc<PlayList>(`users/${this.authService.uid}/playLists/${id}`)
-      .set(value);
+    return this.db.doc<PlayList>(`users/${uid}/playLists/${id}`).set(value);
   }
 
   getPlayLists(uid: string): Observable<PlayList[]> {

@@ -1,36 +1,49 @@
-<ng-container *ngIf="playList$ | async as playList; else blank">
-  <div class="edit">
-    <div class="edit__form-grid">
-      <div>
-        <app-list-name-edit [playList$]="playList$"></app-list-name-edit>
-        <div class="edit__stats">
-          <p>動画数 / 0</p>
-          <p>
-            ・更新日 /
-            {{ playList.updateAt.toDate() | date: 'yyyy年MM月dd日' }}
-          </p>
+<div class="container">
+  <ng-container *ngIf="playList$ | async as playList; else blank">
+    <div class="edit">
+      <div class="edit__form-grid">
+        <div>
+          <app-list-name-edit [playList$]="playList$"></app-list-name-edit>
+          <div class="edit__stats">
+            <p>動画数 / 0</p>
+            <p>
+              ・更新日 /
+              {{ playList.updateAt.toDate() | date: 'yyyy年MM月dd日' }}
+            </p>
+          </div>
+          <app-list-privacy-edit
+            [playList$]="playList$"
+          ></app-list-privacy-edit>
+          <app-video-addition [videos$]="videos$"></app-video-addition>
         </div>
-        <app-list-privacy-edit [playList$]="playList$"></app-list-privacy-edit>
-        <app-video-addition [videos$]="videos$"></app-video-addition>
-      </div>
 
-      <app-list-description-edit
-        [playList$]="playList$"
-      ></app-list-description-edit>
+        <app-list-description-edit
+          [playList$]="playList$"
+        ></app-list-description-edit>
+      </div>
+      <mat-divider></mat-divider>
     </div>
-    <mat-divider></mat-divider>
-  </div>
-  <div class="movies">
-    <app-video-list
-      class="video-list-grid"
-      [listId]="listId"
-      [videos$]="videos$"
-    ></app-video-list>
-  </div>
-</ng-container>
+    <div class="movies">
+      <app-video-list
+        class="video-list-grid"
+        [listId]="listId"
+        [videos$]="videos$"
+      ></app-video-list>
+    </div>
+  </ng-container>
+</div>
 <ng-template #blank>
-  <p>このプレイリストは存在していません</p>
-  <a routerLink="/"
-    ><button mat-raised-button color="basic">ホームへ</button></a
-  >
+  <ng-container *ngIf="!this.loading">
+    <p>このプレイリストは存在していません</p>
+    <a routerLink="/">
+      <button mat-raised-button color="basic">ホームへ</button>
+    </a>
+  </ng-container>
+  <div class="loading">
+    <mat-progress-bar
+      *ngIf="this.loading"
+      color="accent"
+      mode="buffer"
+    ></mat-progress-bar>
+  </div>
 </ng-template>

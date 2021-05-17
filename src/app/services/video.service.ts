@@ -70,13 +70,15 @@ export class VideoService {
       .set(value);
   }
 
-  deleteVideo(uid: string, listId: string, videoId: string): Promise<void> {
+  async deleteVideo(
+    uid: string,
+    listId: string,
+    videoId: string
+  ): Promise<void> {
     console.log(videoId);
-    return this.db
+    await this.db
       .doc<Video>(`users/${uid}/playLists/${listId}/videos/${videoId}`)
-      .delete()
-      .then(() => {
-        this.snackBar.open('動画を削除しました');
-      });
+      .delete();
+    this.snackBar.open('動画を削除しました');
   }
 }

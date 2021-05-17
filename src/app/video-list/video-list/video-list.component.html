@@ -14,10 +14,7 @@
       <mat-icon>more_horiz</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button
-        (click)="this.videoService.deleteVideo(uid, listId, video.videoId)"
-        mat-menu-item
-      >
+      <button (click)="this.delete(video.videoId)" mat-menu-item>
         <mat-icon>delete</mat-icon>
         <span>削除</span>
       </button>
